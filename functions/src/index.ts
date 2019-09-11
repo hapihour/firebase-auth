@@ -28,12 +28,13 @@ export const userCreated = functions
     const message = {
       id: user.uid,
       email: user.providerData[0].email,
-      photoUrl: user.photoURL
+      photoUrl: user.photoURL,
+      name: user.displayName
     }
 
     const params = {
       Message: JSON.stringify(message),
-      TopicArn: aws.sns_test_sns_arn,
+      TopicArn: aws.sns_user_created_arn,
     };
 
     const publishTextPromise = new AWS.SNS({apiVersion: '2010-03-31'})
